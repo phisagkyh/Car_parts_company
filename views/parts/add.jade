@@ -1,0 +1,82 @@
+extends ../layout
+
+//-- name: String,                      // name
+//-  shelf_life: Number,                // a shelf life for storage 
+//-  quantity_available: Number,        // how many there are in storage
+//-  buying_price: Number,              // an in-price
+//-  selling_price: Number,             // an out-price
+//-  manufacturer: {                    // manufacturer, 
+//-      name: String,                  // company name, 
+//-      phone: String,                 // phone number, 
+//-      address: String                // headoffice address.
+//-  },
+//-  supplier: {
+//-      name: String,                  // name 
+//-      address: String,               // address
+//-      contact_person: String,        // contact person name 
+//-      phone: String,                 // contact person phone number
+//-      email: String,                 // contact person e-mail
+//-  },                                 // supplier,
+//-  critical_number: Number,           // a number for critical level that should be ordered automatically if too low, 
+//-  arrival_date: Date,                // a date for when the parts have arrived. 
+//-  car_model: String                  // which car and model it fits.
+
+block content
+    h1 Add Spare Part
+    form.user_input(action='/parts', method='post')
+        label(for='name')
+            span Part Name
+            input(type='text', name='name', id='name', required='true', value='PartXXX', )
+        fieldset
+            legend Manufacturer
+            label(for='name')
+                span Name
+                input(type='text', name='manufacturer_name', id='manufacturer_name', required='true', value='PartXXX - Manufacturer')
+            label(for='phone')
+                span Phone
+                input(type='text', name='manufacturer_phone', id='manufacturer_phone', required='true', value='+00 0000 0000' )
+            label(for='address')
+                span Address
+                input(type='text', name='manufacturer_address', id='manufacturer_address', required='true', value='1/2, Street-X, City-Y, State-Z, Country')
+        fieldset
+            legend Supplier
+            label(for='name')
+                span Name
+                input(type='text', name='supplier_name', id='supplier_name', required='true', value='PartXXX - Supplier')
+            label(for='address')
+                span Address
+                input(type='text', name='supplier_address', id='supplier_address', required='true', value='1/2, Street-X, City-Y, State-Z, Country')
+            label(for='contact_person')
+                span Contact Person
+                input(type='text', name='supplier_contact_person', id='supplier_contact_person', required='true', value='John Doe')
+            label(for='phone')
+                span Phone
+                input(type='text', name='supplier_phone', id='supplier_phone', required='true', value='+00 0000 0000' )
+            label(for='email')
+                span Email
+                input(type='text', name='supplier_email', id='supplier_email', required='true', value='something@something.com')
+        label(for='shelf_life')
+            span Shelf Life
+            input(type='number', name='shelf_life', id='shelf_life', required='true', value='1')
+        label(for='quantity_available')
+            span Quantity Available
+            input(type='number', name='quantity_available', id='quantity_available', required='true', value='1')
+        label(for='selling_price')
+            span Buying Price
+            input(type='number', name='selling_price', id='selling_price', required='true', value='0.00')
+        label(for='buying_price')
+            span Selling Price
+            input(type='number', name='buying_price', id='buying_price', required='true', value='0.00')
+        label(for='critical_number')
+            span Critical Number
+            input(type='number', name='critical_number', id='critical_number', required='true', value='0')
+        label(for='arrival_date')
+            span Arrival Date
+            input(type='date', name='arrival_date', id='arrival_date', required='true', value='2019-01-01')
+        label(for='car_model')
+            span Car Model
+            input(type='text', name='car_model', id='car_model', required='true', value='ABCXXX')
+
+        label.control-label(for='submit')
+            span
+            input(type='submit', id='submit', value='Save')

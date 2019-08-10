@@ -1,0 +1,61 @@
+extends ../layout
+
+//-- name: String,                      // name
+//-  shelf_life: Number,                // a shelf life for storage 
+//-  quantity_available: Number,        // how many there are in storage
+//-  buying_price: Number,              // an in-price
+//-  selling_price: Number,             // an out-price
+//-  manufacturer: {                    // manufacturer, 
+//-      name: String,                  // company name, 
+//-      phone: String,                 // phone number, 
+//-      address: String                // headoffice address.
+//-  },
+//-  supplier: {
+//-      name: String,                  // name 
+//-      address: String,               // address
+//-      contact_person: String,        // contact person name 
+//-      phone: String,                 // contact person phone number
+//-      email: String,                 // contact person e-mail
+//-  },                                 // supplier,
+//-  critical_number: Number,           // a number for critical level that should be ordered automatically if too low, 
+//-  arrival_date: Date,                // a date for when the parts have arrived. 
+//-  car_model: String                  // which car and model it fits.
+
+block content
+    h1= title
+    table.parts_table
+        tr
+            th Part
+            th Mfg
+            th Mfg Details
+            th Suplier
+            th Supplier Details
+            th Shelf Life
+            th Qty
+            th Buy Price
+            th Sell Price
+            th Critical No.
+            th Date
+            th Model
+            th Delete
+        if parts_list && parts_list.length > 0
+            each part in parts_list
+                tr
+                    td #{part.name}
+                    td #{part.manufacturer.name}
+                    td #{part.manufacturer.phone + ' ' + part.manufacturer.address}
+                    td #{part.supplier.name}
+                    td #{part.supplier.address + ' ' + part.supplier.contact_person + '/' + part.supplier.phone + '/' + part.supplier.email}
+                    td #{part.shelf_life}
+                    td #{part.quantity_available}
+                    td #{part.buying_price}
+                    td #{part.selling_price}
+                    td #{part.critical_number}
+                    td #{part.arrival_date}
+                    td #{part.car_model}
+                    td.center
+                        a(href="/parts/delete?id=#{part.id}")
+                            img.icon(src="/images/delete.png")
+        else
+            tr
+                td(colspan=13) No records
